@@ -1,0 +1,33 @@
+## Instruction
+
+Select useful evidence from the original repository candidates.
+
+Select a directly imitable implementation anchor when one is available. Then select non-redundant blocks that cover the unresolved decisions in the retrieval hint. Order the selected blocks as follows:
+
+1. implementation anchor;
+2. complementary evidence;
+3. required dependencies.
+
+Select as many blocks as the task requires. Do not select a fixed number of blocks. Return exactly one JSON object only. Do not output reasoning steps, code, or text outside the JSON object.
+
+## Output Format
+
+{
+  "selected_block_ids": ["B..."]
+}
+
+## Input
+
+<repository>
+{REPOSITORY_NAME}
+</repository>
+<current_file>
+{CURRENT_FILE_PATH}
+</current_file>
+<cursor_prefix>
+{CODE_BEFORE_COMPLETION_POSITION}
+</cursor_prefix>
+<retrieval_hint>
+{STAGE_1_OUTPUT}
+</retrieval_hint>
+{CANDIDATE_BLOCKS}

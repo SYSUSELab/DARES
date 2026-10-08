@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dares-evidence-selection"
+version = "0.1.0"
+description = "Decision-guided adaptive evidence selection for repository-level code generation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+inference = ["transformers>=4.45", "vllm>=0.8", "tqdm>=4.66"]
+train = ["accelerate>=0.34", "datasets>=2.20", "peft>=0.13", "torch>=2.3", "transformers>=4.45"]
+test = ["pytest>=8"]
+
+[project.scripts]
+dares-select = "dares.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["dares*"]
+
+[tool.setuptools.data-files]
+"share/dares/prompts" = ["prompts/decider.txt", "prompts/selector.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,51 @@
+## Instruction
+
+Identify the repository-specific generation decisions that cannot be resolved from the visible code alone.
+
+Return exactly one JSON object containing:
+
+- target: the function or code unit to be generated;
+- objective: what the target code must accomplish;
+- anchor.pattern: the implementation structure that should be searched for;
+- anchor.entities: repository entities involved in the implementation anchor;
+- decisions: additional repository-specific questions that remain unresolved.
+
+For each decision, specify:
+
+- type: the category of the unresolved decision;
+- requirement: the concrete repository fact that must be confirmed;
+- entities: repository symbols associated with the decision.
+
+The objective describes what the target code must do. The anchor describes what kind of existing implementation can be imitated. The decisions describe additional facts that the anchor alone may not provide.
+
+Include only information necessary for completing the target code. Use concise phrases and state each fact once. Do not output target code, retrieved code, reasoning steps, or text outside the JSON object.
+
+## Output Format
+
+{
+  "target": "...",
+  "objective": "...",
+  "anchor": {
+    "pattern": "...",
+    "entities": ["..."]
+  },
+  "decisions": [
+    {
+      "type": "...",
+      "requirement": "...",
+      "entities": ["..."]
+    }
+  ]
+}
+
+## Input
+
+<repository>
+{REPOSITORY_NAME}
+</repository>
+<current_file>
+{CURRENT_FILE_PATH}
+</current_file>
+<cursor_prefix>
+{CODE_BEFORE_COMPLETION_POSITION}
+</cursor_prefix>
